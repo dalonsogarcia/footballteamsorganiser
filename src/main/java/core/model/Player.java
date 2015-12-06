@@ -9,7 +9,9 @@ package core.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Player {
@@ -25,8 +27,8 @@ public class Player {
 
     private String comments;
     
-    @OneToMany(mappedBy = "id")
-    private List<PlayerRecord> playerRecords;
+    @OneToMany(mappedBy = "player")
+    private Set<PlayerRecord> playerRecords;
 
     public Player(){
     }
@@ -35,7 +37,7 @@ public class Player {
         this.name = name;
         photoId = 0L;
         comments = "";
-        playerRecords = new ArrayList<>();
+        playerRecords = new HashSet<>();
     }
 
     public Long getId() {
@@ -70,11 +72,11 @@ public class Player {
         this.comments = comments;
     }
 
-    public List<PlayerRecord> getPlayerRecords() {
+    public Set<PlayerRecord> getPlayerRecords() {
         return playerRecords;
     }
 
-    public void setPlayerRecords(List<PlayerRecord> playerRecords) {
+    public void setPlayerRecords(Set<PlayerRecord> playerRecords) {
         this.playerRecords = playerRecords;
     }
 }

@@ -1,13 +1,17 @@
 package core;
 
 import config.ApplicationConfig;
-import core.model.Player;
+import core.model.GameRecord;
+import core.model.TeamType;
+import core.services.GameRecordService;
+import core.services.PlayerRecordService;
 import core.services.PlayerService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.inject.Inject;
-import java.util.Collection;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.logging.Logger;
 
 /**
@@ -19,6 +23,12 @@ public class FootballApplication {
 
     @Inject
     private PlayerService playerService;
+
+    @Inject
+    private GameRecordService gameRecordService;
+
+    @Inject
+    private PlayerRecordService playerRecordService;
 
     public static void main (String[] args) {
         final ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
@@ -41,6 +51,12 @@ public class FootballApplication {
         playerService.getAllPlayers().forEach(player -> System.out.println(player.getId() + ", " + player.getName()));
         LOGGER.info("FINDING PLAYER");
         playerService.findPlayersByName("tommy2").forEach(player -> System.out.println(player.getId() + ", " + player.getName()));
+        LOGGER.info("CREATING GAME RECORD");
+        GameRecord gameRecord = gameRecordService.createGameRecord(new Date());
+        LOGGER.info("GAME RECORD : " + Long.toString(gameRecord.getId().longValue()));
+        LOGGER.info("ADDING PLAYERS TO TEAM");
+        gameRecordService.addPlayersToGameAndTeam(playerService.findPlayersByNames(Arrays.asList("tommy", "tommy1",
+                "tommy2")), TeamType.TEAM_1,gameRecord);
     }
 
 }

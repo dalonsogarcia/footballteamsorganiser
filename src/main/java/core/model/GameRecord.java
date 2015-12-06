@@ -2,8 +2,7 @@ package core.model;
 
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by tommylii on 04/12/2015.
@@ -19,10 +18,19 @@ public class GameRecord {
 
     private String location;
 
-    @OneToMany(mappedBy = "id")
-    private List<PlayerRecord> playerRecordList;
+    @OneToMany(mappedBy = "gameRecord")
+    private Set<PlayerRecord> playerRecords;
 
     private String comments;
+
+    public GameRecord(final Date date) {
+        this.date = date;
+        this.playerRecords = new HashSet<>();
+    }
+
+    public GameRecord() {
+
+    }
 
     public Long getId() {
         return id;
@@ -54,5 +62,13 @@ public class GameRecord {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    public Set<PlayerRecord> getPlayerRecords() {
+        return playerRecords;
+    }
+
+    public void setPlayerRecords(Set<PlayerRecord> playerRecords) {
+        this.playerRecords = playerRecords;
     }
 }

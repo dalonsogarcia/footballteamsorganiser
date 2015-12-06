@@ -25,6 +25,16 @@ public class PlayerRecord {
 
     private TeamType team;
 
+    public PlayerRecord(final Player player, final GameRecord gameRecord, final TeamType team) {
+        this.player = player;
+        this.gameRecord = gameRecord;
+        this.team = team;
+    }
+
+    public PlayerRecord() {
+
+    }
+
     public int getGoals() {
         return goals;
     }
@@ -64,5 +74,13 @@ public class PlayerRecord {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public GameRecord getGameRecord() {
+        return gameRecord;
+    }
+
+    public void setGameRecord(GameRecord gameRecord) {
+        this.gameRecord = gameRecord;
     }
 }

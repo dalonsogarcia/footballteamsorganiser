@@ -34,4 +34,11 @@ public class PlayerServiceImpl implements PlayerService {
     public Collection<Player> findPlayersByName(final String name) {
         return playerRepository.findByName(name);
     }
+
+    @Override
+    public Collection<Player> findPlayersByNames(Collection<String> playerNames) {
+        Collection<Player> players = new ArrayList<>();
+        playerNames.forEach(name -> players.addAll(playerRepository.findByName(name)));
+        return players;
+    }
 }

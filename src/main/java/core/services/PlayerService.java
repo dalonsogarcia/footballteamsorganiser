@@ -9,9 +9,11 @@ import java.util.Collection;
  */
 public interface PlayerService {
 
-    Player createPlayer(String name);
+    Player createPlayer(final String name);
 
     Collection<Player> getAllPlayers();
 
-    Collection<Player> findPlayersByName(String name);
+    Collection<Player> findPlayersByName(final String name);
+
+    Collection<Player> findPlayersByNames(final Collection<String> playerNames);
 }
