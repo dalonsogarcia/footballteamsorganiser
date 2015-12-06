@@ -1,6 +1,6 @@
 package core.services;
 
-import core.model.Player;
+import core.entities.Player;
 
 import java.util.Collection;
 

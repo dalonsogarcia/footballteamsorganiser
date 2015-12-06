@@ -1,8 +1,8 @@
 package core.services;
 
-import core.model.GameRecord;
-import core.model.Player;
-import core.model.TeamType;
+import core.entities.GameRecord;
+import core.entities.Player;
+import core.entities.TeamType;
 
 import java.util.Collection;
 import java.util.Date;

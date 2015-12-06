@@ -1,8 +1,8 @@
 package core.repositories;
 
-import core.model.GameRecord;
-import core.model.Player;
-import core.model.PlayerRecord;
+import core.entities.GameRecord;
+import core.entities.Player;
+import core.entities.PlayerRecord;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -18,5 +18,5 @@ public interface PlayerRecordRepository extends CrudRepository<PlayerRecord,Long
 
     Collection<PlayerRecord> findByPlayer(final Player player);
 
-    Collection<PlayerRecord> findByGameRecordAndPlayer(final GameRecord gameRecord, final Player player);
+    PlayerRecord findByGameRecordAndPlayer(final GameRecord gameRecord, final Player player);
 }

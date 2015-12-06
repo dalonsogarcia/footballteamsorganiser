@@ -1,4 +1,4 @@
-package core.model;
+package core.entities;
 
 
 import javax.persistence.*;
@@ -18,7 +18,7 @@ public class GameRecord {
 
     private String location;
 
-    @OneToMany(mappedBy = "gameRecord")
+    @OneToMany(mappedBy = "gameRecord", cascade = CascadeType.ALL)
     private Set<PlayerRecord> playerRecords;
 
     private String comments;

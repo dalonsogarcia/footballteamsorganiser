@@ -23,7 +23,7 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 public class DataStoreConfig {
 
-    public static final String CORE_MODEL = "core.model";
+    public static final String CORE_MODEL = "core.entities";
     public static final String CORE_REPOSITORIES = "core.repositories";
 
     @Bean

@@ -1,6 +1,6 @@
 package core.services.impl;
 
-import core.model.Player;
+import core.entities.Player;
 import org.springframework.stereotype.Service;
 import core.repositories.PlayerRepository;
 import core.services.PlayerService;

@@ -1,6 +1,6 @@
 package core.repositories;
 
-import core.model.Player;
+import core.entities.Player;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

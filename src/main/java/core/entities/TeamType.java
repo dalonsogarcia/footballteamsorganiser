@@ -1,4 +1,4 @@
-package core.model;
+package core.entities;
 
 /**
  * Created by tommylii on 04/12/2015.

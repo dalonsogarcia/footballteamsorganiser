@@ -1,6 +1,6 @@
 package core.repositories;
 
-import core.model.GameRecord;
+import core.entities.GameRecord;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

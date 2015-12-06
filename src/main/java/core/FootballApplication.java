@@ -1,8 +1,8 @@
 package core;
 
 import config.ApplicationConfig;
-import core.model.GameRecord;
-import core.model.TeamType;
+import core.entities.GameRecord;
+import core.entities.TeamType;
 import core.services.GameRecordService;
 import core.services.PlayerRecordService;
 import core.services.PlayerService;

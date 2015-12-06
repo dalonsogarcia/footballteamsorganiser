@@ -1,9 +1,9 @@
 package core.services.impl;
 
-import core.model.GameRecord;
-import core.model.Player;
-import core.model.PlayerRecord;
-import core.model.TeamType;
+import core.entities.GameRecord;
+import core.entities.Player;
+import core.entities.PlayerRecord;
+import core.entities.TeamType;
 import core.repositories.PlayerRecordRepository;
 import org.springframework.stereotype.Service;
 import core.repositories.GameRecordRepository;

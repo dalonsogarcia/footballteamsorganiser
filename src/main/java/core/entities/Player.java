@@ -1,4 +1,4 @@
-package core.model;
+package core.entities;
 
 
 /**
@@ -8,9 +8,7 @@ package core.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -27,7 +25,7 @@ public class Player {
 
     private String comments;
     
-    @OneToMany(mappedBy = "player")
+    @OneToMany(mappedBy = "player",cascade = CascadeType.ALL)
     private Set<PlayerRecord> playerRecords;
 
     public Player(){
