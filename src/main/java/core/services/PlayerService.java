@@ -13,4 +13,5 @@ public interface PlayerService {
 
     Collection<Player> getAllPlayers();
 
+    Collection<Player> findPlayersByName(String name);
 }

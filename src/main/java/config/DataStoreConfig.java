@@ -19,10 +19,12 @@ import javax.sql.DataSource;
  * Created by tommylii on 04/12/2015.
  */
 @Configuration
-@EnableJpaRepositories
+@EnableJpaRepositories(basePackages = "core.repositories")
 @EnableTransactionManagement
-@ComponentScan(basePackages = {"core"})
 public class DataStoreConfig {
+
+    public static final String CORE_MODEL = "core.model";
+    public static final String CORE_REPOSITORIES = "core.repositories";
 
     @Bean
     public DataSource dataSource() {
@@ -34,11 +36,11 @@ public class DataStoreConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        vendorAdapter.setDatabase(Database.POSTGRESQL);
+        vendorAdapter.setDatabase(Database.HSQL);
         vendorAdapter.setGenerateDdl(true);
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan(getClass().getPackage().getName());
+        factory.setPackagesToScan(CORE_REPOSITORIES, CORE_MODEL);
         factory.setDataSource(dataSource());
 
         return factory;

@@ -5,12 +5,8 @@ package core.model;
  * Created by tommylii on 04/12/2015.
  */
 
-import org.springframework.data.annotation.Id;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +27,9 @@ public class Player {
     
     @OneToMany(mappedBy = "id")
     private List<PlayerRecord> playerRecords;
+
+    public Player(){
+    }
 
     public Player(final String name) {
         this.name = name;

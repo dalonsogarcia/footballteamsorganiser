@@ -1,11 +1,7 @@
 package core.model;
 
-import org.springframework.data.annotation.Id;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * Created by tommylii on 04/12/2015.
@@ -28,14 +24,6 @@ public class PlayerRecord {
     private GameRecord gameRecord;
 
     private TeamType team;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public int getGoals() {
         return goals;
@@ -68,5 +56,13 @@ public class PlayerRecord {
 
     public void setTeam(TeamType team) {
         this.team = team;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

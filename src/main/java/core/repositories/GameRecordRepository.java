@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 /**
  * Created by tommylii on 04/12/2015.
  */
-@Repository
+@Repository("gameRecordRepository")
 public interface GameRecordRepository extends CrudRepository<GameRecord,Long> {
+
 }
