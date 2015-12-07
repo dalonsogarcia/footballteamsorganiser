@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.*;
+import java.util.logging.Logger;
 
 /**
  * Created by tommylii on 04/12/2015.
@@ -16,11 +17,14 @@ import java.util.*;
 @Transactional
 public class PlayerServiceImpl implements PlayerService {
 
+    private static Logger LOGGER = Logger.getLogger(PlayerServiceImpl.class.getName());
+
     @Inject
     private PlayerRepository playerRepository;
 
 
     public Player createPlayer(final String name) {
+        LOGGER.info("Creating player with name : " + name);
         return playerRepository.save(new Player(name));
     }
 

@@ -1,13 +1,11 @@
-package core;
+package core.controllers;
 
-import config.ApplicationConfig;
 import core.entities.GameRecord;
 import core.entities.TeamType;
 import core.services.GameRecordService;
-import core.services.PlayerRecordService;
 import core.services.PlayerService;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
 import java.util.Arrays;
@@ -15,11 +13,12 @@ import java.util.Date;
 import java.util.logging.Logger;
 
 /**
- * Created by tommylii on 06/12/2015.
+ * Created by tommylii on 07/12/2015.
  */
-public class FootballApplication {
+@RestController
+public class IndexController {
 
-    private final static Logger LOGGER = Logger.getLogger(FootballApplication.class.getName());
+    private final static Logger LOGGER = Logger.getLogger(IndexController.class.getName());
 
     @Inject
     private PlayerService playerService;
@@ -27,16 +26,9 @@ public class FootballApplication {
     @Inject
     private GameRecordService gameRecordService;
 
-    @Inject
-    private PlayerRecordService playerRecordService;
-
-    public static void main (String[] args) {
-        final ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
-        final FootballApplication footballApplication = context.getBean(FootballApplication.class);
-        footballApplication.run();
-    }
-
-    public void run() {
+    @RequestMapping("")
+    public String createPlayers() {
+        LOGGER.info("Received request");
         LOGGER.info("CREATING PLAYER");
         playerService.createPlayer("tommy");
         LOGGER.info("FETCHING ALL PLAYERS");
@@ -57,6 +49,7 @@ public class FootballApplication {
         LOGGER.info("ADDING PLAYERS TO TEAM");
         gameRecordService.addPlayersToGameAndTeam(playerService.findPlayersByNames(Arrays.asList("tommy", "tommy1",
                 "tommy2")), TeamType.TEAM_1,gameRecord);
+        return "Data created";
     }
 
 }
