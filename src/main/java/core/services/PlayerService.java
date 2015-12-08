@@ -14,7 +14,7 @@ public interface PlayerService {
 
     Collection<PlayerDto> getAllPlayers();
 
-    Collection<PlayerDto> findPlayersByName(final String name);
+    PlayerDto findPlayerByName(final String name);
 
     Collection<PlayerDto> findPlayersByNames(final Collection<String> playerNames);
 

@@ -1,7 +1,7 @@
 package core.controllers;
 
 import core.dto.GameRecordDto;
-import core.entities.GameRecord;
+import core.dto.PlayerDto;
 import core.entities.TeamType;
 import core.services.GameRecordService;
 import core.services.PlayerService;
@@ -45,8 +45,7 @@ public class IndexController {
         LOGGER.info("FETCHING ALL PLAYERS");
         playerService.getAllPlayers().forEach(player -> System.out.println(player.getName() + ", " + player.getName()));
         LOGGER.info("FINDING PLAYER");
-        playerService.findPlayersByName("tommy2").forEach(player -> System.out.println(player.getName() + ", " + player
-                .getName()));
+        PlayerDto playerByName = playerService.findPlayerByName("tommy2");
         LOGGER.info("CREATING GAME RECORD");
         GameRecordDto gameRecord = gameRecordService.createGameRecord(new Date());
         LOGGER.info("GAME RECORD : " + Long.toString(gameRecord.getId().longValue()));

@@ -44,7 +44,7 @@ public class GameRecordServiceImpl implements GameRecordService{
                                               final GameRecordDto gameRecord) {
         playersByNames.forEach(player ->
             playerRecordRepository.save(new PlayerRecord(playerRepository.findOne(player.getId()),
-                    gameRecordRepository.findOne(gameRecord.getId()), team)));
+                    gameRecordRepository.findOne(gameRecord.getId()), team,"")));
         return gameRecordRepository.findOne(gameRecord.getId()).toGameRecordDto();
     }
 }

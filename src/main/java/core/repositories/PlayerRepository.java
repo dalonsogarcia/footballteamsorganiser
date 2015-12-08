@@ -12,6 +12,6 @@ import java.util.Collection;
 @Repository
 public interface PlayerRepository extends CrudRepository<Player, Long> {
 
-    Collection<Player> findByName(String name);
+    Player findByName(String name);
 
 }
