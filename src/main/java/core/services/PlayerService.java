@@ -1,5 +1,6 @@
 package core.services;
 
+import core.dto.PlayerDto;
 import core.entities.Player;
 
 import java.util.Collection;
@@ -9,11 +10,13 @@ import java.util.Collection;
  */
 public interface PlayerService {
 
-    Player createPlayer(final String name);
+    PlayerDto createPlayer(final String name);
 
-    Collection<Player> getAllPlayers();
+    Collection<PlayerDto> getAllPlayers();
 
-    Collection<Player> findPlayersByName(final String name);
+    Collection<PlayerDto> findPlayersByName(final String name);
 
-    Collection<Player> findPlayersByNames(final Collection<String> playerNames);
+    Collection<PlayerDto> findPlayersByNames(final Collection<String> playerNames);
+
+    PlayerDto findById(final Long id);
 }

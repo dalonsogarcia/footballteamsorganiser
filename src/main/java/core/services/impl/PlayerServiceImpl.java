@@ -1,5 +1,6 @@
 package core.services.impl;
 
+import core.dto.PlayerDto;
 import core.entities.Player;
 import org.springframework.stereotype.Service;
 import core.repositories.PlayerRepository;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.inject.Inject;
 import java.util.*;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  * Created by tommylii on 04/12/2015.
@@ -22,27 +24,35 @@ public class PlayerServiceImpl implements PlayerService {
     @Inject
     private PlayerRepository playerRepository;
 
-
-    public Player createPlayer(final String name) {
+    @Override
+    public PlayerDto createPlayer(final String name) {
         LOGGER.info("Creating player with name : " + name);
-        return playerRepository.save(new Player(name));
+        return playerRepository.save(new Player(name)).toPlayerDto();
     }
 
-    public Collection<Player> getAllPlayers() {
-        ArrayList<Player> playerArrayList = new ArrayList<>();
-        playerRepository.findAll().forEach(playerArrayList::add);
+    @Override
+    public Collection<PlayerDto> getAllPlayers() {
+        ArrayList<PlayerDto> playerArrayList = new ArrayList<>();
+        playerRepository.findAll().forEach(player -> playerArrayList.add(player.toPlayerDto()));
         return playerArrayList;
     }
 
     @Override
-    public Collection<Player> findPlayersByName(final String name) {
-        return playerRepository.findByName(name);
+    public Collection<PlayerDto> findPlayersByName(final String name) {
+        return playerRepository.findByName(name)
+                .stream().map(Player::toPlayerDto).collect(Collectors.toList());
     }
 
     @Override
-    public Collection<Player> findPlayersByNames(Collection<String> playerNames) {
-        Collection<Player> players = new ArrayList<>();
-        playerNames.forEach(name -> players.addAll(playerRepository.findByName(name)));
+    public Collection<PlayerDto> findPlayersByNames(Collection<String> playerNames) {
+        Collection<PlayerDto> players = new ArrayList<>();
+        playerNames.forEach(name -> players.addAll(playerRepository.findByName(name).stream().map
+                (Player::toPlayerDto).collect(Collectors.toList())));
         return players;
+    }
+
+    @Override
+    public PlayerDto findById(Long id) {
+        return playerRepository.findOne(id).toPlayerDto();
     }
 }

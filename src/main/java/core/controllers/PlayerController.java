@@ -1,5 +1,6 @@
 package core.controllers;
 
+import core.dto.PlayerDto;
 import core.entities.Player;
 import core.services.PlayerService;
 import org.springframework.web.bind.annotation.*;
@@ -17,14 +18,16 @@ public class PlayerController {
     @Inject
     private PlayerService playerService;
 
-    @RequestMapping(path = "", method = RequestMethod.GET)
-    public Collection<Player> getAllPlayers(){
-        return playerService.getAllPlayers();
+    @RequestMapping(path = "")
+    public Collection<PlayerDto> getAllPlayers(){
+        Collection<PlayerDto> allPlayers = playerService.getAllPlayers();
+        return allPlayers;
     }
 
-    @RequestMapping(path = "{playerName}", method = RequestMethod.GET)
-    public Player getAllPlayers(@PathVariable String playerName){
-        return playerService.createPlayer(playerName);
+    @RequestMapping(path = "{playerName}")
+    public PlayerDto createPlayer(@PathVariable String playerName){
+        PlayerDto player = playerService.createPlayer(playerName);
+        return player;
     }
 
 }

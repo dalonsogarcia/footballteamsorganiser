@@ -1,6 +1,8 @@
 package core.entities;
 
 
+import core.dto.PlayerRecordDto;
+
 import javax.persistence.*;
 
 /**
@@ -25,10 +27,11 @@ public class PlayerRecord {
 
     private TeamType team;
 
-    public PlayerRecord(final Player player, final GameRecord gameRecord, final TeamType team) {
+    public PlayerRecord(final Player player, final GameRecord gameRecord, final TeamType team, final String comments) {
         this.player = player;
         this.gameRecord = gameRecord;
         this.team = team;
+        this.comments = comments;
     }
 
     public PlayerRecord() {
@@ -82,5 +85,9 @@ public class PlayerRecord {
 
     public void setGameRecord(GameRecord gameRecord) {
         this.gameRecord = gameRecord;
+    }
+
+    public PlayerRecordDto toPlayerRecordDto() {
+        return new PlayerRecordDto(this.comments,this.team,this.goals,this.id);
     }
 }

@@ -1,8 +1,11 @@
 package core.entities;
 
 
+import core.dto.GameRecordDto;
+
 import javax.persistence.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by tommylii on 04/12/2015.
@@ -70,5 +73,10 @@ public class GameRecord {
 
     public void setPlayerRecords(Set<PlayerRecord> playerRecords) {
         this.playerRecords = playerRecords;
+    }
+
+    public GameRecordDto toGameRecordDto() {
+        return new GameRecordDto(this.comments,this.date,this.location,this.playerRecords.stream().map
+                (PlayerRecord::toPlayerRecordDto).collect(Collectors.toSet()), id);
     }
 }

@@ -1,10 +1,12 @@
 package core.controllers;
 
+import core.dto.GameRecordDto;
 import core.entities.GameRecord;
 import core.entities.TeamType;
 import core.services.GameRecordService;
 import core.services.PlayerService;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
@@ -27,12 +29,13 @@ public class IndexController {
     private GameRecordService gameRecordService;
 
     @RequestMapping("")
+    @ResponseBody
     public String createPlayers() {
         LOGGER.info("Received request");
         LOGGER.info("CREATING PLAYER");
         playerService.createPlayer("tommy");
         LOGGER.info("FETCHING ALL PLAYERS");
-        playerService.getAllPlayers().forEach(player -> System.out.println(player.getId() + ", " + player.getName()));
+        playerService.getAllPlayers().forEach(player -> System.out.println(player.getName() + ", " + player.getName()));
         LOGGER.info("CREATING PLAYER");
         playerService.createPlayer("tommy1");
         LOGGER.info("CREATING PLAYER");
@@ -40,11 +43,12 @@ public class IndexController {
         LOGGER.info("CREATING PLAYER");
         playerService.createPlayer("tommy3");
         LOGGER.info("FETCHING ALL PLAYERS");
-        playerService.getAllPlayers().forEach(player -> System.out.println(player.getId() + ", " + player.getName()));
+        playerService.getAllPlayers().forEach(player -> System.out.println(player.getName() + ", " + player.getName()));
         LOGGER.info("FINDING PLAYER");
-        playerService.findPlayersByName("tommy2").forEach(player -> System.out.println(player.getId() + ", " + player.getName()));
+        playerService.findPlayersByName("tommy2").forEach(player -> System.out.println(player.getName() + ", " + player
+                .getName()));
         LOGGER.info("CREATING GAME RECORD");
-        GameRecord gameRecord = gameRecordService.createGameRecord(new Date());
+        GameRecordDto gameRecord = gameRecordService.createGameRecord(new Date());
         LOGGER.info("GAME RECORD : " + Long.toString(gameRecord.getId().longValue()));
         LOGGER.info("ADDING PLAYERS TO TEAM");
         gameRecordService.addPlayersToGameAndTeam(playerService.findPlayersByNames(Arrays.asList("tommy", "tommy1",

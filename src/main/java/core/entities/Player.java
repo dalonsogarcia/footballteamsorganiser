@@ -6,6 +6,8 @@ package core.entities;
  */
 
 
+import core.dto.PlayerDto;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
@@ -76,5 +78,9 @@ public class Player {
 
     public void setPlayerRecords(Set<PlayerRecord> playerRecords) {
         this.playerRecords = playerRecords;
+    }
+
+    public PlayerDto toPlayerDto(){
+        return new PlayerDto(this.name,this.comments,this.playerRecords,this.id);
     }
 }
